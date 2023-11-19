@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
@@ -18,6 +18,7 @@ def root():
 from controllers import *
 from model.user_model import User_model
 from model.task_model import Task_model
+from model.task_history_model import Task_history_model
 
 with app.app_context():
     db.create_all()
