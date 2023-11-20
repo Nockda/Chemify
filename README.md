@@ -12,12 +12,11 @@
    ```
 3. all the test can be run by postman. in the 'api_test_postman' has a exported json file. you can import that json file and test.
 
-
 The final number in the URL represents the user_no. While it may has challenges in commercial usage, for the convenience of testing, I have unavoidably included the user ID in the URL.
 
 
 
-DB relationship
+__DB relationship__
 
 - User_model
 
@@ -29,7 +28,6 @@ DB relationship
 
 - Task_model
 
-
 | Column         | Data Type | Constraints                                |
 | -------------- | --------- | ------------------------------------------ |
 | task_id        | int       | Primary Key                                |
@@ -38,10 +36,7 @@ DB relationship
 | status         | str       | -                                          |
 | assign_user_id | int       | Foreign Key (user_model.user_no), Not Null |
 
-
-
 - Task_history_model
-
 
 | Column           | Data Type | Constraints                                |
 | ---------------- | --------- | ------------------------------------------ |
