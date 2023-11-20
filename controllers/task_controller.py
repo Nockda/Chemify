@@ -22,7 +22,7 @@ def tasks(user_no):
                     "task_name": task.task_name,
                     "description": task.description,
                     "status": task.status,
-                    "assign_user": task.assign_user,
+                    "assign_user": task.assign_user.user_no,
                 }
                 for task in user_tasks
             ]
@@ -95,6 +95,35 @@ def statusValidationCheck(data):
     status_combo = ["Pending", "Doing", "Blocked", "Done"]
     if data["status"] not in status_combo:
         abort(400, description="You input the wrong status value")
+
+
+##################################################################
+################### History table event listener##################
+##################################################################
+
+
+@app.route("/tasks/history", methods=["GET"])
+def task_history():
+    task_history = Task_history_model.query.all()
+
+    if not task_history:
+        return jsonify({"message": "No history entries found for the task"}), 404
+
+    history_list = [
+        {
+            "task_history_id": entry.task_history_id,
+            "task_id": entry.task_id,
+            "task_name": entry.task_name,
+            "description": entry.description,
+            "status": entry.status,
+            "action_type": entry.action_type,
+            "transaction_time": entry.transaction_time.isoformat(),
+            "transaction_user": entry.transaction_user,
+        }
+        for entry in task_history
+    ]
+
+    return jsonify({"task_history": history_list})
 
 
 ##################################################################

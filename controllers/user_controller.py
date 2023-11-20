@@ -27,13 +27,3 @@ def search_users():
         db.session.add(new_user)
         db.session.commit()
         return jsonify({"message": "User added successfully!"})
-
-
-@app.route("/users/<int:user_id>", methods=["GET"])
-def search_user(user_id):
-    db_value = db.session.execute(
-        "SELECT * FROM USER WHERE ID LIKE " + "'%" + str(user_id) + "\%"
-    ).fetchall()
-    if db_value:
-        return render_template("sql_read.html", item=db_value)
-    return abort(404, "no data")
