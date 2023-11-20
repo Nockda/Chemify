@@ -1,6 +1,6 @@
 from app import app, db
 from model.user_model import User_model
-from flask import request, jsonify, render_template, abort
+from flask import request, jsonify
 
 user = User_model()
 

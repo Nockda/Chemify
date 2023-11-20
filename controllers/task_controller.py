@@ -1,5 +1,4 @@
 from flask import abort, app, jsonify, request
-from sqlalchemy.event import listens_for
 from sqlalchemy.orm.exc import NoResultFound
 
 # from app.models import db
@@ -39,7 +38,6 @@ def tasks(user_no):
             assign_user=user,
         )
         db.session.add(new_task)
-        # new_task has no task_id. so query db and search the data to register the history table.
         registered_task = Task_model.query.filter_by(
             task_name=data["task_name"]
         ).first()
